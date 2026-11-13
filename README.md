@@ -28,6 +28,18 @@ Back up any existing configuration before replacing it.
    Copy-Item .\wezterm-windows.lua "$env:USERPROFILE\.wezterm.lua"
    ```
 
+### Open PowerShell and Ubuntu
+
+On Windows, the tab bar and window controls share one row. Click the `+`
+button in the tab bar to choose Windows PowerShell or Ubuntu (WSL). The Ubuntu
+entry requires a WSL distribution named `Ubuntu`. Press `Ctrl+Shift+T` to open
+a new tab in the current shell domain.
+
+This Windows configuration sets `dpi = 120.0` for the current multi-monitor
+setup. Adjust this value if you use different display scaling.
+
+The Windows taskbar's **Ubuntu (WSL)** shortcut is stored separately by Windows.
+
 ## Install on Linux
 
 1. Install [WezTerm](https://wezterm.org/install/linux.html).
@@ -58,13 +70,15 @@ it up, because that file takes precedence over the configuration directory.
 
 ## Key bindings
 
-The original shortcuts are retained on both platforms.
+The shortcuts below apply to both platforms unless marked Windows only.
 
 | Keys | Action |
 | --- | --- |
 | `Alt+D` | Split left/right |
 | `Alt+Shift+D` | Split top/bottom |
-| `Ctrl+Shift+T` | New tab |
+| `Ctrl+Shift+T` | New tab in the current shell domain |
+| `Ctrl+Alt+U` | Open an Ubuntu tab (Windows only) |
+| `Ctrl+Alt+P` | Open a Windows PowerShell tab (Windows only) |
 | `Alt+Left` / `Alt+Right` | Move between panes |
 | `Ctrl+Shift+W` | Close current pane, with confirmation |
 
