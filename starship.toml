@@ -1,0 +1,62 @@
+# Dracula text prompt, matching the selected preview on warm charcoal.
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+palette = 'dracula'
+format = '$username$hostname$directory$git_branch$git_status$conda$python$line_break$character'
+right_format = '$cmd_duration'
+
+[palettes.dracula]
+green = '#50fa7b'
+pink = '#ff79c6'
+purple = '#bd93f9'
+orange = '#ffb86c'
+red = '#ff5555'
+white = '#f8f8f2'
+muted = '#bcb8af'
+
+[username]
+show_always = false
+style_user = 'orange'
+style_root = 'red'
+format = '[$user@]($style)'
+
+[hostname]
+ssh_only = true
+format = '[$hostname](orange) '
+
+[directory]
+style = 'green'
+format = '[$path$read_only]($style) '
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = true
+read_only = ' ro'
+
+[git_branch]
+symbol = 'git:'
+style = 'pink'
+format = '[$symbol$branch]($style) '
+
+[git_status]
+style = 'pink'
+format = '([$all_status$ahead_behind]($style) )'
+
+[conda]
+ignore_base = false
+style = 'purple'
+format = '[conda:$environment]($style) '
+
+[python]
+style = 'purple'
+format = '[venv:$virtualenv]($style) '
+detect_extensions = []
+detect_files = []
+detect_folders = []
+
+[cmd_duration]
+min_time = 2000
+format = '[took $duration](muted)'
+
+[character]
+success_symbol = '[❯](white)'
+error_symbol = '[❯](red)'

@@ -1,44 +1,74 @@
 # WezTerm config
 
-Windows and Linux configurations with Catppuccin Mocha colors, JetBrains Mono,
-a compact tab bar, system window controls, and 10,000 lines of scrollback.
+Windows uses a warm charcoal palette and a Dracula Starship prompt. Linux uses
+Catppuccin Mocha. Both configurations use a compact tab bar, system window
+controls, and 10,000 lines of scrollback.
 Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config).
 
 ## Files
 
-| File | Platform | Shell and fonts |
+| File | Platform | Purpose |
 | --- | --- | --- |
-| `wezterm-windows.lua` | Windows | Windows PowerShell; JetBrains Mono with Consolas fallback |
-| `wezterm-linux.lua` | Linux | `$SHELL -l`, falling back to `/bin/bash -l`; JetBrains Mono with Noto Chinese and Emoji fallback |
+| `wezterm-windows.lua` | Windows | PowerShell 7, JetBrainsMono Nerd Font Mono, and a warm charcoal palette |
+| `wezterm-linux.lua` | Linux | `$SHELL -l` (or `/bin/bash -l`), JetBrains Mono, and Catppuccin Mocha |
 | `wezterm.lua` | Auto-detect | Loads the matching platform file from the same directory |
+| `starship.toml` | Windows | Two-line Dracula prompt with directory, Git, and environment information |
+| `powershell-profile-snippet.ps1` | Windows | Loads the Starship prompt in WezTerm's PowerShell 7 sessions |
 
-Both platform files are standalone: copy just the matching file to `.wezterm.lua`.
-Back up any existing configuration before replacing it.
+Both platform Lua files are standalone. Back up any existing configuration
+before copying the matching file to `.wezterm.lua`.
 
 ## Install on Windows
 
-1. Install [WezTerm](https://wezterm.org/installation.html).
-2. Optionally install JetBrains Mono; Consolas is the fallback.
-3. From this repository directory, run PowerShell:
+1. Install [WezTerm](https://wezterm.org/install/windows.html) and PowerShell 7.
+   Install Starship if you want the Dracula prompt.
 
    ```powershell
-   if (Test-Path "$env:USERPROFILE\.wezterm.lua") {
-     Copy-Item "$env:USERPROFILE\.wezterm.lua" "$env:USERPROFILE\.wezterm.lua.backup-$(Get-Date -Format yyyyMMdd-HHmmss)"
-   }
-   Copy-Item .\wezterm-windows.lua "$env:USERPROFILE\.wezterm.lua"
+   winget install --id Microsoft.PowerShell --exact
+   winget install --id Starship.Starship --exact
    ```
+
+2. Install the `JetBrainsMonoNerdFontMono-*.ttf` faces from the
+   [JetBrains Mono Nerd Font release](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip),
+   or place them in `%USERPROFILE%\.config\wezterm-dracula\fonts\` so WezTerm
+   can load them directly.
+
+3. From this repository directory, run:
+
+   ```powershell
+   $weztermConfig = Join-Path $HOME '.wezterm.lua'
+   if (Test-Path -LiteralPath $weztermConfig) {
+     Copy-Item -LiteralPath $weztermConfig -Destination "$weztermConfig.backup-$(Get-Date -Format yyyyMMdd-HHmmss)"
+   }
+   Copy-Item -LiteralPath '.\wezterm-windows.lua' -Destination $weztermConfig
+   ```
+
+4. For the Starship prompt, copy the theme and open your profile in PowerShell 7:
+
+   ```powershell
+   $themeDir = Join-Path $HOME '.config\wezterm-dracula'
+   New-Item -ItemType Directory -Force -Path $themeDir | Out-Null
+   Copy-Item -LiteralPath '.\starship.toml' -Destination $themeDir
+   New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null
+   notepad $PROFILE
+   ```
+
+   Add the contents of `powershell-profile-snippet.ps1` once. Keep your existing
+   profile and merge any existing prompt initialization. Reopen WezTerm.
 
 ### Open PowerShell and Ubuntu
 
-On Windows, the tab bar and window controls share one row. Click the `+`
-button in the tab bar to choose Windows PowerShell or Ubuntu (WSL). The Ubuntu
-entry requires a WSL distribution named `Ubuntu`. Press `Ctrl+Shift+T` to open
-a new tab in the current shell domain.
+Click `+` to choose PowerShell 7, Windows PowerShell, or Ubuntu (WSL). The
+Ubuntu entry requires a WSL distribution named `Ubuntu`. It uses the same
+WezTerm window theme and its own Ubuntu shell prompt.
 
-This Windows configuration sets `dpi = 120.0` for the current multi-monitor
-setup. Adjust this value if you use different display scaling.
+In Windows Explorer, right-click a folder or its background and select
+**Show more options → Open WezTerm here** to start in that directory. This
+entry comes from the Windows WezTerm installer.
 
-The Windows taskbar's **Ubuntu (WSL)** shortcut is stored separately by Windows.
+The configuration sets `dpi = 120.0` for the current multi-monitor setup.
+Adjust it if you use different display scaling.
+
 
 ## Install on Linux
 
