@@ -1,6 +1,7 @@
 # WezTerm config
 
-Windows uses a warm charcoal palette and a Dracula Starship prompt. Linux uses
+Windows uses a warm charcoal palette with a Dracula Starship prompt for
+PowerShell 7 and Ubuntu (WSL). The standalone Linux configuration uses
 Catppuccin Mocha. Both configurations use a compact tab bar, system window
 controls, and 10,000 lines of scrollback.
 Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config).
@@ -12,8 +13,9 @@ Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/we
 | `wezterm-windows.lua` | Windows | PowerShell 7, JetBrainsMono Nerd Font Mono, and a warm charcoal palette |
 | `wezterm-linux.lua` | Linux | `$SHELL -l` (or `/bin/bash -l`), JetBrains Mono, and Catppuccin Mocha |
 | `wezterm.lua` | Auto-detect | Loads the matching platform file from the same directory |
-| `starship.toml` | Windows | Two-line Dracula prompt with directory, Git, and environment information |
+| `starship.toml` | Windows and WSL | Two-line Dracula prompt with directory, Git, and environment information |
 | `powershell-profile-snippet.ps1` | Windows | Loads the Starship prompt in WezTerm's PowerShell 7 sessions |
+| `zshrc-snippet.zsh` | WSL | Loads the same Starship prompt in Ubuntu zsh sessions |
 
 Both platform Lua files are standalone. Back up any existing configuration
 before copying the matching file to `.wezterm.lua`.
@@ -69,6 +71,49 @@ entry comes from the Windows WezTerm installer.
 The configuration sets `dpi = 120.0` for the current multi-monitor setup.
 Adjust it if you use different display scaling.
 
+### Set up the Dracula prompt in WSL
+
+Use the Windows WezTerm configuration above, then open **Ubuntu (WSL)** from
+the `+` menu. The Windows app provides the colors and fonts for the window.
+Install Starship inside Ubuntu to apply the same prompt to zsh.
+
+1. In Ubuntu with zsh, install Starship using its
+   [official installer](https://starship.rs/guide/).
+
+   ```bash
+   mkdir -p "$HOME/.local/bin"
+   curl -fsSL https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
+   ```
+
+2. From the repository directory in Ubuntu, copy the shared theme and back
+   up your zsh configuration. If the repository is on your Windows desktop,
+   open it from `/mnt/c/Users/<Windows-user>/Desktop/wezterm-config`.
+
+   ```bash
+   theme_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
+   stamp="$(date +%Y%m%d-%H%M%S)"
+   mkdir -p "$theme_dir"
+   if [ -e "$theme_dir/starship.toml" ]; then
+     cp -p "$theme_dir/starship.toml" "$theme_dir/starship.toml.backup-$stamp"
+   fi
+   cp starship.toml "$theme_dir/starship.toml"
+   if [ -e "$HOME/.zshrc" ]; then
+     cp -p "$HOME/.zshrc" "$HOME/.zshrc.backup-$stamp"
+   fi
+   ```
+
+3. If you use Conda, add this block above `# >>> conda initialize >>>` in
+   `~/.zshrc` so Starship displays the active environment.
+
+   ```zsh
+   if [[ -x "$HOME/.local/bin/starship" ]]; then
+       export CONDA_CHANGEPS1=false
+   fi
+   ```
+
+4. Add the contents of `zshrc-snippet.zsh` to the end of `~/.zshrc` once.
+   If the file already initializes Starship, keep a single initialization
+   block. Open a new Ubuntu tab to load the prompt.
 
 ## Install on Linux
 
