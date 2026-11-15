@@ -1,8 +1,8 @@
 # WezTerm config
 
 Windows uses a warm charcoal palette with a Dracula Starship prompt for
-PowerShell 7 and Ubuntu (WSL). The standalone Linux configuration uses
-Catppuccin Mocha. Both configurations use a compact tab bar, system window
+PowerShell 7, Windows PowerShell 5.1, and Ubuntu (WSL). The standalone Linux
+configuration uses Catppuccin Mocha. Both configurations use a compact tab bar, system window
 controls, and 10,000 lines of scrollback.
 Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config).
 
@@ -14,7 +14,7 @@ Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/we
 | `wezterm-linux.lua` | Linux | `$SHELL -l` (or `/bin/bash -l`), JetBrains Mono, and Catppuccin Mocha |
 | `wezterm.lua` | Auto-detect | Loads the matching platform file from the same directory |
 | `starship.toml` | Windows and WSL | Two-line Dracula prompt with directory, Git, and environment information |
-| `powershell-profile-snippet.ps1` | Windows | Loads the Starship prompt in WezTerm's PowerShell 7 sessions |
+| `powershell-profile-snippet.ps1` | Windows | Loads the Starship prompt in WezTerm sessions for PowerShell 7 and Windows PowerShell 5.1 |
 | `zshrc-snippet.zsh` | WSL | Loads the same Starship prompt in Ubuntu zsh sessions |
 
 Both platform Lua files are standalone. Back up any existing configuration
@@ -45,18 +45,26 @@ before copying the matching file to `.wezterm.lua`.
    Copy-Item -LiteralPath '.\wezterm-windows.lua' -Destination $weztermConfig
    ```
 
-4. For the Starship prompt, copy the theme and open your profile in PowerShell 7:
+4. For the Starship prompt, copy the shared theme once:
 
    ```powershell
    $themeDir = Join-Path $HOME '.config\wezterm-dracula'
    New-Item -ItemType Directory -Force -Path $themeDir | Out-Null
    Copy-Item -LiteralPath '.\starship.toml' -Destination $themeDir
-   New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null
-   notepad $PROFILE
    ```
 
-   Add the contents of `powershell-profile-snippet.ps1` once. Keep your existing
-   profile and merge any existing prompt initialization. Reopen WezTerm.
+5. PowerShell 7 and Windows PowerShell 5.1 each load a separate profile. Run
+   the following in each shell you use, opening it from WezTerm's `+` menu:
+
+   ```powershell
+   $profilePath = $PROFILE.CurrentUserCurrentHost
+   New-Item -ItemType Directory -Force -Path (Split-Path -Parent $profilePath) | Out-Null
+   notepad $profilePath
+   ```
+
+   Add the contents of `powershell-profile-snippet.ps1` once to each profile.
+   Keep your existing profile and merge any existing prompt initialization.
+   Open a new tab in each shell to load the prompt.
 
 ### Open PowerShell and Ubuntu
 
