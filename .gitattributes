@@ -1,1 +1,7 @@
-zshrc-snippet.zsh text eol=lf
+* text=auto
+*.lua text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.ghostty text eol=lf
+*.zsh text eol=lf
+*.ps1 text eol=crlf

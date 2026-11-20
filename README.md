@@ -1,175 +1,46 @@
-# WezTerm config
+# Terminal config
 
-Windows uses a warm charcoal palette with a Dracula Starship prompt for
-PowerShell 7, Windows PowerShell 5.1, and Ubuntu (WSL). The standalone Linux
-configuration uses Catppuccin Mocha. Both configurations use a compact tab bar, system window
-controls, and 10,000 lines of scrollback.
-Inspired by [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config).
+个人终端配置：**Windows 使用 WezTerm，Linux 使用 Ghostty**。
 
-## Files
-
-| File | Platform | Purpose |
+| 目录 | 主要平台 | 内容 |
 | --- | --- | --- |
-| `wezterm-windows.lua` | Windows | PowerShell 7, JetBrainsMono Nerd Font Mono, and a warm charcoal palette |
-| `wezterm-linux.lua` | Linux | `$SHELL -l` (or `/bin/bash -l`), JetBrains Mono, and Catppuccin Mocha |
-| `wezterm.lua` | Auto-detect | Loads the matching platform file from the same directory |
-| `starship.toml` | Windows and WSL | Two-line Dracula prompt with directory, Git, and environment information |
-| `powershell-profile-snippet.ps1` | Windows | Loads the Starship prompt in WezTerm sessions for PowerShell 7 and Windows PowerShell 5.1 |
-| `zshrc-snippet.zsh` | WSL | Loads the same Starship prompt in Ubuntu zsh sessions |
+| [wezterm/](wezterm/README.md) | Windows / WSL | WezTerm 配置、Dracula Starship 提示符、PowerShell 与 WSL zsh 初始化片段 |
+| [ghostty/](ghostty/README.md) | Linux（Ubuntu / GNOME） | 本机正在使用的 Ghostty 配置与安装说明 |
 
-Both platform Lua files are standalone. Back up any existing configuration
-before copying the matching file to `.wezterm.lua`.
+```text
+.
+├── README.md
+├── wezterm/
+│   ├── README.md
+│   ├── wezterm.lua                   # 自动选择 WezTerm 平台配置
+│   ├── wezterm-windows.lua           # Windows 主配置
+│   ├── wezterm-linux.lua             # 旧 Linux 配置，作为备用保留
+│   ├── starship.toml                 # Windows / WSL 提示符主题
+│   ├── powershell-profile-snippet.ps1
+│   └── zshrc-snippet.zsh
+└── ghostty/
+    ├── README.md
+    └── config.ghostty                # Linux 主配置
+```
 
-## Install on Windows
+## 使用
 
-1. Install [WezTerm](https://wezterm.org/install/windows.html) and PowerShell 7.
-   Install Starship if you want the Dracula prompt.
+- **Windows / WSL**：按 [WezTerm 安装说明](wezterm/README.md) 操作。该说明中的命令在仓库的 `wezterm/` 子目录执行。
+- **Linux**：按 [Ghostty 安装说明](ghostty/README.md) 操作。该说明中的命令在仓库根目录执行。
 
-   ```powershell
-   winget install --id Microsoft.PowerShell --exact
-   winget install --id Starship.Starship --exact
-   ```
+两个终端的配置分别维护，保留各自现有的配色与快捷键。
+Ghostty 配置来自本机 `${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config.ghostty`，未收录历史备份和桌面启动器。
 
-2. Install the `JetBrainsMonoNerdFontMono-*.ttf` faces from the
-   [JetBrains Mono Nerd Font release](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip),
-   or place them in `%USERPROFILE%\.config\wezterm-dracula\fonts\` so WezTerm
-   can load them directly.
+## 从旧仓库布局迁移
 
-3. From this repository directory, run:
+原根目录下的 WezTerm 配置、Starship 主题和 shell 片段全部移入 `wezterm/`，内容保持不变。
+如果此前直接引用了仓库内的文件（例如符号链接或脚本），请在原路径中加入 `wezterm/`。
+此前复制到用户配置目录的文件可以继续使用。
 
-   ```powershell
-   $weztermConfig = Join-Path $HOME '.wezterm.lua'
-   if (Test-Path -LiteralPath $weztermConfig) {
-     Copy-Item -LiteralPath $weztermConfig -Destination "$weztermConfig.backup-$(Get-Date -Format yyyyMMdd-HHmmss)"
-   }
-   Copy-Item -LiteralPath '.\wezterm-windows.lua' -Destination $weztermConfig
-   ```
+建议仓库名为 `terminal-config`。远端仓库若完成改名，可更新本地地址：
 
-4. For the Starship prompt, copy the shared theme once:
+```bash
+git remote set-url origin https://github.com/22364yiqun/terminal-config.git
+```
 
-   ```powershell
-   $themeDir = Join-Path $HOME '.config\wezterm-dracula'
-   New-Item -ItemType Directory -Force -Path $themeDir | Out-Null
-   Copy-Item -LiteralPath '.\starship.toml' -Destination $themeDir
-   ```
-
-5. PowerShell 7 and Windows PowerShell 5.1 each load a separate profile. Run
-   the following in each shell you use, opening it from WezTerm's `+` menu:
-
-   ```powershell
-   $profilePath = $PROFILE.CurrentUserCurrentHost
-   New-Item -ItemType Directory -Force -Path (Split-Path -Parent $profilePath) | Out-Null
-   notepad $profilePath
-   ```
-
-   Add the contents of `powershell-profile-snippet.ps1` once to each profile.
-   Keep your existing profile and merge any existing prompt initialization.
-   Open a new tab in each shell to load the prompt.
-
-### Open PowerShell and Ubuntu
-
-Click `+` to choose PowerShell 7, Windows PowerShell, or Ubuntu (WSL). The
-Ubuntu entry requires a WSL distribution named `Ubuntu`. It uses the same
-WezTerm window theme and its own Ubuntu shell prompt.
-
-In Windows Explorer, right-click a folder or its background and select
-**Show more options → Open WezTerm here** to start in that directory. This
-entry comes from the Windows WezTerm installer.
-
-The configuration sets `dpi = 120.0` for the current multi-monitor setup.
-Adjust it if you use different display scaling.
-
-### Set up the Dracula prompt in WSL
-
-Use the Windows WezTerm configuration above, then open **Ubuntu (WSL)** from
-the `+` menu. The Windows app provides the colors and fonts for the window.
-Install Starship inside Ubuntu to apply the same prompt to zsh.
-
-1. In Ubuntu with zsh, install Starship using its
-   [official installer](https://starship.rs/guide/).
-
-   ```bash
-   mkdir -p "$HOME/.local/bin"
-   curl -fsSL https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
-   ```
-
-2. From the repository directory in Ubuntu, copy the shared theme and back
-   up your zsh configuration. If the repository is on your Windows desktop,
-   open it from `/mnt/c/Users/<Windows-user>/Desktop/wezterm-config`.
-
-   ```bash
-   theme_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
-   stamp="$(date +%Y%m%d-%H%M%S)"
-   mkdir -p "$theme_dir"
-   if [ -e "$theme_dir/starship.toml" ]; then
-     cp -p "$theme_dir/starship.toml" "$theme_dir/starship.toml.backup-$stamp"
-   fi
-   cp starship.toml "$theme_dir/starship.toml"
-   if [ -e "$HOME/.zshrc" ]; then
-     cp -p "$HOME/.zshrc" "$HOME/.zshrc.backup-$stamp"
-   fi
-   ```
-
-3. If you use Conda, add this block above `# >>> conda initialize >>>` in
-   `~/.zshrc` so Starship displays the active environment.
-
-   ```zsh
-   if [[ -x "$HOME/.local/bin/starship" ]]; then
-       export CONDA_CHANGEPS1=false
-   fi
-   ```
-
-4. Add the contents of `zshrc-snippet.zsh` to the end of `~/.zshrc` once.
-   If the file already initializes Starship, keep a single initialization
-   block. Open a new Ubuntu tab to load the prompt.
-
-## Install on Linux
-
-1. Install [WezTerm](https://wezterm.org/install/linux.html).
-2. On Ubuntu/Debian, install the fonts:
-
-   ```bash
-   sudo apt install fonts-jetbrains-mono fonts-noto-cjk fonts-noto-color-emoji
-   ```
-
-3. From this repository directory, install the standalone Linux configuration:
-
-   ```bash
-   if [ -e "$HOME/.wezterm.lua" ]; then
-     cp "$HOME/.wezterm.lua" "$HOME/.wezterm.lua.backup-$(date +%Y%m%d-%H%M%S)"
-   fi
-   cp wezterm-linux.lua "$HOME/.wezterm.lua"
-   ```
-
-The Linux configuration uses your current `$SHELL`, so no zsh installation is required.
-
-## Automatic platform selection (optional)
-
-Instead of the standalone installation above, copy **all three Lua files** into
-`~/.config/wezterm/` on Linux, or `%USERPROFILE%\.config\wezterm\` on Windows.
-Keep their filenames unchanged. `wezterm.lua` selects the platform automatically.
-Move an existing `~/.wezterm.lua` / `%USERPROFILE%\.wezterm.lua` aside after backing
-it up, because that file takes precedence over the configuration directory.
-
-## Key bindings
-
-The shortcuts below apply to both platforms unless marked Windows only.
-
-| Keys | Action |
-| --- | --- |
-| `Alt+D` | Split left/right |
-| `Alt+Shift+D` | Split top/bottom |
-| `Ctrl+Shift+T` | New tab in the current shell domain |
-| `Ctrl+Alt+U` | Open an Ubuntu tab (Windows only) |
-| `Ctrl+Alt+P` | Open a Windows PowerShell tab (Windows only) |
-| `Alt+Left` / `Alt+Right` | Move between panes |
-| `Ctrl+Shift+W` | Close current pane, with confirmation |
-
-Other WezTerm shortcuts keep their defaults. See the
-[default key assignments](https://wezterm.org/config/default-keys.html).
-Configuration reloads automatically; press `Ctrl+Shift+R` to reload manually.
-
-## Reference
-
-- [WezTerm configuration file locations](https://wezterm.org/config/files.html)
-- [KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config)
+以上命令仅更新本地 remote，不会重命名 GitHub 仓库。

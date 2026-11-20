@@ -1,0 +1,42 @@
+# Ghostty — Ubuntu / GNOME
+# 文档：https://ghostty.org/docs/config
+# 修改后按 Ctrl+Shift+, 重新加载。
+
+# 字体：代码字体 + 中文回退
+font-family = JetBrainsMono Nerd Font Mono
+font-family = Noto Sans Mono CJK SC
+font-size = 13
+
+# 深色配色（内置主题）
+theme = TokyoNight Night
+# 暖深灰背景，搭配柔白文字，降低背景的蓝色感。
+background = #262522
+foreground = #dedbd2
+background-opacity = 1
+window-theme = dark
+window-padding-x = 12
+window-padding-y = 10
+window-width = 120
+window-height = 34
+
+# 光标与回滚：每个终端最多保留 64 MiB
+cursor-style = bar
+cursor-style-blink = false
+scrollback-limit-bytes = 67108864
+
+# 自动识别默认 shell，支持新标签页继承当前目录
+shell-integration = detect
+
+# 分屏：D 左右分屏，E 上下分屏
+keybind = ctrl+shift+d=new_split:right
+keybind = ctrl+shift+e=new_split:down
+keybind = ctrl+shift+left=goto_split:left
+keybind = ctrl+shift+right=goto_split:right
+keybind = ctrl+shift+up=goto_split:up
+keybind = ctrl+shift+down=goto_split:down
+keybind = ctrl+shift+enter=toggle_split_zoom
+
+# 复用 GTK 进程，避免每次开窗重新初始化。
+# 关闭最后一个窗口后仍保留后台进程；Ctrl+Shift+Q 可彻底退出。
+gtk-single-instance = true
+quit-after-last-window-closed = false
