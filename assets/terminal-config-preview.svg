@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+<title id="title">WezTerm Windows 与 Ghostty Linux 配置预览</title>
+<desc id="desc">根据仓库配置绘制的示意图，包括暖深灰背景、字体、提示符示例、配色及分屏快捷键；不是实际截图。</desc>
+<rect x="0" y="0" width="1440" height="1080" rx="0" fill="#f2efe8"/>
+<text x="48" y="59" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="18" fill="#79756b">TERMINAL / CONFIG</text>
+<text x="48" y="119" font-family="Noto Sans CJK SC, sans-serif" font-size="36" fill="#34332f">Windows × WezTerm  /  Linux × Ghostty</text>
+<text x="48" y="160" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#79756b">暖深灰背景 · 中文字体回退 · 独立维护的终端配置</text>
+<text x="1232" y="59" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="16" fill="#79756b">CONFIG PREVIEW</text>
+<text x="48" y="208" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#34332f">WEZTERM</text>
+<text x="383" y="208" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="18" fill="#79756b">WINDOWS / WSL</text>
+<rect x="48" y="230" width="648" height="400" rx="12" fill="#262522"/>
+<rect x="48" y="230" width="648" height="48" rx="12" fill="#201f1d"/>
+<rect x="48" y="258" width="648" height="20" rx="0" fill="#201f1d"/>
+<text x="744" y="208" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#34332f">GHOSTTY</text>
+<text x="1079" y="208" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="18" fill="#79756b">LINUX / GNOME</text>
+<rect x="744" y="230" width="648" height="400" rx="12" fill="#262522"/>
+<rect x="744" y="230" width="648" height="48" rx="12" fill="#201f1d"/>
+<rect x="744" y="258" width="648" height="20" rx="0" fill="#201f1d"/>
+<rect x="60" y="239" width="182" height="31" rx="6" fill="#302e2a"/>
+<text x="76" y="261" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="16" fill="#bd93f9">PowerShell 7</text>
+<text x="259" y="261" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="16" fill="#bcb8af">Ubuntu (WSL)</text>
+<text x="416" y="261" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="22" fill="#bcb8af">+</text>
+<path d="M593 253 L605 253" stroke="#bcb8af" stroke-width="1"/>
+<path d="M631 249 L642 249" stroke="#bcb8af" stroke-width="1"/>
+<path d="M631 249 L631 260" stroke="#bcb8af" stroke-width="1"/>
+<path d="M642 249 L642 260" stroke="#bcb8af" stroke-width="1"/>
+<path d="M631 260 L642 260" stroke="#bcb8af" stroke-width="1"/>
+<path d="M669 249 L680 260" stroke="#bcb8af" stroke-width="1"/>
+<path d="M680 249 L669 260" stroke="#bcb8af" stroke-width="1"/>
+<text x="76" y="322" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#50fa7b">~/terminal-config</text>
+<text x="305" y="322" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#ff79c6">git:main</text>
+<text x="76" y="359" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="23" fill="#f8f8f2">❯</text>
+<text x="104" y="359" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#dedbd2">Get-ChildItem</text>
+<text x="76" y="401" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="18" fill="#bcb8af">Mode    Name</text>
+<text x="76" y="435" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#7aa2f7">d----   ghostty</text>
+<text x="76" y="467" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#7aa2f7">d----   wezterm</text>
+<text x="76" y="499" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#dedbd2">-a---   README.md</text>
+<text x="76" y="550" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#50fa7b">~/terminal-config</text>
+<text x="305" y="550" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#ff79c6">git:main</text>
+<text x="76" y="588" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="23" fill="#f8f8f2">❯</text>
+<rect x="104" y="569" width="2" height="24" rx="0" fill="#c0caf5"/>
+<text x="770" y="261" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="24" fill="#bcb8af">+</text>
+<text x="944" y="261" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="17" fill="#dedbd2">Ghostty</text>
+<text x="1314" y="261" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#bcb8af">−  □  ×</text>
+<path d="M1154 279 L1154 630" stroke="#48453f" stroke-width="1"/>
+<text x="772" y="320" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#dedbd2">$ pwd</text>
+<text x="772" y="355" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#7aa2f7">~/terminal-config</text>
+<text x="772" y="409" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#dedbd2">$ ls</text>
+<text x="772" y="444" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#7aa2f7">ghostty/  wezterm/</text>
+<text x="772" y="479" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#dedbd2">README.md</text>
+<text x="772" y="551" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="20" fill="#dedbd2">$ </text>
+<rect x="798" y="532" width="2" height="24" rx="0" fill="#c0caf5"/>
+<text x="1176" y="320" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="18" fill="#dedbd2">$ echo hello</text>
+<text x="1176" y="355" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#9ece6a">hello</text>
+<text x="1176" y="409" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="19" fill="#dedbd2">$ </text>
+<rect x="48" y="661" width="648" height="320" rx="12" fill="#e7e2d8"/>
+<rect x="744" y="661" width="648" height="320" rx="12" fill="#e7e2d8"/>
+<text x="72" y="700" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#34332f">Windows 配置速览</text>
+<text x="72" y="741" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">JetBrainsMono Nerd Font Mono · 13 pt</text>
+<text x="72" y="778" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">Dracula Starship · PowerShell 7 / WSL</text>
+<text x="72" y="815" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">120 × 34 初始尺寸 · 10,000 行滚动历史</text>
+<text x="72" y="857" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">左右分屏  Alt+D     上下分屏  Alt+Shift+D</text>
+<text x="72" y="894" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">切换分屏  Alt+← / →</text>
+<rect x="72" y="925" width="61" height="27" rx="5" fill="#15161e"/>
+<rect x="145" y="925" width="61" height="27" rx="5" fill="#f7768e"/>
+<rect x="218" y="925" width="61" height="27" rx="5" fill="#9ece6a"/>
+<rect x="291" y="925" width="61" height="27" rx="5" fill="#e0af68"/>
+<rect x="364" y="925" width="61" height="27" rx="5" fill="#7aa2f7"/>
+<rect x="437" y="925" width="61" height="27" rx="5" fill="#bb9af7"/>
+<rect x="510" y="925" width="61" height="27" rx="5" fill="#7dcfff"/>
+<rect x="583" y="925" width="61" height="27" rx="5" fill="#a9b1d6"/>
+<text x="768" y="700" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#34332f">Linux 配置速览</text>
+<text x="768" y="741" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">JetBrainsMono Nerd Font Mono · 13 pt</text>
+<text x="768" y="778" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">TokyoNight Night · 默认 shell</text>
+<text x="768" y="815" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">120 × 34 初始尺寸 · 64 MiB 滚动历史</text>
+<text x="768" y="857" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">左右分屏  Ctrl+Shift+D</text>
+<text x="768" y="894" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">上下分屏  Ctrl+Shift+E</text>
+<text x="768" y="943" font-family="Noto Sans CJK SC, sans-serif" font-size="17" fill="#34332f">切换  Ctrl+Shift+方向键    放大  Ctrl+Shift+Enter</text>
+<text x="48" y="1021" font-family="JetBrainsMono Nerd Font Mono, monospace" font-size="17" fill="#79756b">BACKGROUND #262522     FOREGROUND #dedbd2</text>
+<text x="48" y="1054" font-family="Noto Sans CJK SC, sans-serif" font-size="17" fill="#79756b">按配置绘制的示意图，非实际截图。窗口装饰与 shell 输出为演示；Ghostty 提示符由本机 shell 管理。</text>
+</svg>
