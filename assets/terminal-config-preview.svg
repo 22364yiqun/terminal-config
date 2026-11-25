@@ -72,7 +72,7 @@
 <text x="768" y="700" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#34332f">Linux 配置速览</text>
 <text x="768" y="741" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">JetBrainsMono Nerd Font Mono · 13 pt</text>
 <text x="768" y="778" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">TokyoNight Night · 默认 shell</text>
-<text x="768" y="815" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">120 × 34 初始尺寸 · 64 MiB 滚动历史</text>
+<text x="768" y="815" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#34332f">应用默认窗口尺寸 · 64 MiB 滚动历史</text>
 <text x="768" y="857" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">左右分屏  Ctrl+Shift+D</text>
 <text x="768" y="894" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#34332f">上下分屏  Ctrl+Shift+E</text>
 <text x="768" y="943" font-family="Noto Sans CJK SC, sans-serif" font-size="17" fill="#34332f">切换  Ctrl+Shift+方向键    放大  Ctrl+Shift+Enter</text>

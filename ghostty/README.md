@@ -7,7 +7,7 @@
 
 - `TokyoNight Night` 内置主题，覆盖为暖深灰背景 `#262522`、柔白文字 `#dedbd2`。
 - `JetBrainsMono Nerd Font Mono`，中文回退为 `Noto Sans Mono CJK SC`，字号 13。
-- 初始窗口 120 列 × 34 行，不透明背景、竖线光标、64 MiB 滚动历史。
+- 初始窗口使用 Ghostty 默认大小，不再固定列数和行数；不透明背景、竖线光标、64 MiB 滚动历史。
 - 自动识别默认 shell，启用 shell integration。
 - 复用 GTK 进程，最后一个窗口关闭后保留后台进程。
 

@@ -16,8 +16,6 @@ background-opacity = 1
 window-theme = dark
 window-padding-x = 12
 window-padding-y = 10
-window-width = 120
-window-height = 34
 
 # 光标与回滚：每个终端最多保留 64 MiB
 cursor-style = bar
